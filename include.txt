@@ -1,0 +1,58 @@
+#include<iostream>
+using namespace std;
+
+struct Student 
+{
+    int rollNo;
+    string name;
+    float sgpa;
+};
+
+void insertionSort(Student arr[], int n) 
+{
+    for (int i = 1; i < n; i++) 
+    {
+        Student key = arr[i];
+        int j = i - 1;
+        
+        while (j >= 0 && arr[j].rollNo > key.rollNo) 
+        {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+void printList(Student arr[], int n) 
+{
+    cout << "Roll No\tName\t\tSGPA" << endl;
+    for (int i = 0; i < n; i++) 
+    {
+        cout << arr[i].rollNo << "\t" << arr[i].name << "\t" << arr[i].sgpa << endl;
+    }
+}
+
+int main() {
+    const int n = 15; 
+    Student students[n] = 
+    {
+        {20, "Digvijay", 8.1}, {38, "Pritesh", 7.5}, {21, "Amrita", 8.9}, 
+        {37, "Prem", 6.8}, {22, "Joel", 7.2}, {36, "Tushar", 8.3}, 
+        {23, "Dhanashree", 7.8}, {35, "Shashwati", 7.0}, {24, "Shivam", 6.5}, 
+        {34, "Yadnesh", 8.6}, {25, "Rajvardhan", 7.9}, {33, "Mihir", 8.0}, 
+        {26, "Prathmesh", 6.9}, {31, "Ajim", 8.5}, {27, "Anushka", 7.6}
+    };
+
+    cout << "Original Roll Call List:\n";
+    printList(students, n);
+
+    insertionSort(students, n);
+
+    cout << "\nSorted Roll Call List (Ascending Order of Roll No):\n";
+    printList(students, n);
+
+    return 0;
+}
+
+
